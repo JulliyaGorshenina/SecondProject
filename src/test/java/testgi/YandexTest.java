@@ -3,6 +3,7 @@ package testgi;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,8 +21,10 @@ public class YandexTest {
 
     @Test
     public void SearchTest(){
-        driver.get("https://ya.ru");
+        driver.get("https://yandex.ru");
         driver.findElement(By.id("text")).sendKeys("Погода Пенза");
+        driver.findElement(By.cssSelector("[type=\"submit\"]")).click();
+        Assert.assertTrue(driver.findElement(By.cssSelector("[accesskey=\"1\"]")).getText().contains("Пензе"));
     }
 
     @AfterClass
