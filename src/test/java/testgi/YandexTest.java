@@ -20,7 +20,7 @@ public class YandexTest {
 
     @Test
     public void SearchTest(){
-        driver.get("https://yandex.ru");
+        driver.get("https://ya.ru");
         driver.findElement(By.id("text")).sendKeys("Погода Пенза");
     }
 
