@@ -15,12 +15,12 @@ public class MarketPage {
         this.driver = driver;
     }
 
-    public void Search(String text){
+    public void Search1 (String text){
         driver.findElement(SearchFild).sendKeys(text);
         driver.findElement(SearchButton).click();
     }
 
-    public String getResult(){
+    public String getResult1(){
         return driver.findElement(FirstResult).getText();
     }
 }
