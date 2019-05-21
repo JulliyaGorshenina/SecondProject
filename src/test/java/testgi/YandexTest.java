@@ -1,35 +1,29 @@
 package testgi;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.MarketPage;
+import pages.SearchPage;
 
-
-
-public class YandexTest {
-    WebDriver driver;
-
-    @BeforeClass
-    public void OpenBrowser(){
-        System.setProperty("webdriver.chrome.driver",".\\chromedriver.exe");
-        driver =new ChromeDriver();
-    }
+public class YandexTest extends BaseTest{
 
     @Test
     public void SearchTest(){
         driver.get("https://yandex.ru");
-        driver.findElement(By.id("text")).sendKeys("Погода Пенза");
-        driver.findElement(By.cssSelector("[type=\"submit\"]")).click();
-        Assert.assertTrue(driver.findElement(By.cssSelector("[accesskey=\"1\"]")).getText().contains("Пензе"));
+        SearchPage searchPage = new SearchPage(driver);
+        searchPage.Search("Погода Пенза");
+        searchPage.getResult();
+        Assert.assertTrue(searchPage.getResult().contains("Пензе"));
     }
 
-    @AfterClass
-    public void EndTest(){
-        driver.quit();
+    @Test
+    public void TabletSearch(){
+        driver.get("https://market.yandex.ru/");
+        MarketPage marketPage = new MarketPage(driver);
+        marketPage.Search1("Планшет");
+        marketPage.getResult1();
+        Assert.assertTrue(marketPage.getResult1().contains("планшет"));
     }
-
 }
+
