@@ -2,7 +2,7 @@ package testgi;
 
 
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Test;;
 import pages.MarketPage;
 import pages.SearchPage;
 
@@ -21,9 +21,9 @@ public class YandexTest extends BaseTest{
     public void TabletSearch(){
         driver.get("https://market.yandex.ru/");
         MarketPage marketPage = new MarketPage(driver);
-        marketPage.Search1("Планшет");
-        marketPage.getResult1();
-        Assert.assertTrue(marketPage.getResult1().contains("планшет"));
+        marketPage.Search("Планшет");
+        marketPage.getResult();
+        Assert.assertTrue(marketPage.getResult().contains("планшет"));
     }
 }
 
