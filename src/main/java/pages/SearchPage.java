@@ -27,5 +27,9 @@ public class SearchPage {
         driver.findElement(SearchFild).sendKeys(text);
         driver.findElement(SearchButton).click();
     }
-    
+
+    public String getResult(){
+        return driver.findElement(FirstLink).getText();
+    }
+
 }
