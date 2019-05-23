@@ -5,16 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MarketPage {
+public class SearchPage {
 
-    private By SearchFild = By.id("header-search");
+    private By SearchFild = By.id("text");
     private By SearchButton = By.cssSelector("[type='submit']");
-    private By FirstResult = By.cssSelector("div h1");
+    private By FirstLink = By.cssSelector("[accesskey='1']");
 
     private final WebDriver driver;
 
-    public MarketPage(WebDriver driver){
-        this.driver = driver;
+    public SearchPage(WebDriver driver){
+        this.driver=driver;
     }
 
     public void waitForElement(By locator){
@@ -22,13 +22,14 @@ public class MarketPage {
                 .until (ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-    public void Search (String text){
+    public void Search(String text){
         waitForElement(SearchFild);
         driver.findElement(SearchFild).sendKeys(text);
         driver.findElement(SearchButton).click();
     }
 
     public String getResult(){
-        return driver.findElement(FirstResult).getText();
+        return driver.findElement(FirstLink).getText();
     }
+
 }
